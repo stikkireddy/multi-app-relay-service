@@ -1,0 +1,53 @@
+version: 1
+ui:
+  name: mainui
+  command: streamlit run app.py --server.port=${PORT} --server.address=0.0.0.0  --server.headless=true
+  routePath: /
+  codePath: tmp/ui
+  type: python
+  meta:
+    title: "Main UI"
+    description: "This is the main ui"
+    tags: [ "ui" ]
+apps:
+  - name: app1
+    command: python -u app.py
+    routePath: /app1
+    codePath: tmp/demoapp
+    type: python
+    meta:
+      title: "App 1"
+      description: "This is a test gradio app"
+      tags: ["bi"]
+
+  - name: app2
+    command: streamlit run app.py --server.port=${PORT} --server.address=0.0.0.0  --server.headless=true
+    routePath: /app2
+    codePath: tmp/demoapp2
+    type: python
+    meta:
+      title: "App 2"
+      description: "This is a test streamlit app"
+      tags: [ "ai", "ml" ]
+
+  - name: app3
+    command: chainlit run app.py --port=${PORT} --host=0.0.0.0  --root-path=/relay/app3 -h -d
+    routePath: /app3
+    codePath: tmp/demoapp3
+    type: python
+    meta:
+      title: "App 3"
+      description: "This is a test chainlit app"
+      tags: [ "ai", "ml" ]
+
+
+  - name: iterm
+    command: python app.py
+    routePath: /iterm
+    codePath: tmp/demoapp4
+    type: python
+    passFullProxyPath: true
+    meta:
+      title: "App 6"
+      description: "This is a test terminal app"
+      tags: [ "bi" ]
